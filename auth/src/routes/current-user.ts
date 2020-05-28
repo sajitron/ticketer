@@ -15,7 +15,6 @@ router.get('/api/users/currentuser', (req, res) => {
 	} catch (error) {
 		return res.send({currentUser: null})
 	}
-	res.send({ message: 'Hi there' });
 });
 
 export { router as currentUserRouter };
