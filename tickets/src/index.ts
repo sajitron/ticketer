@@ -11,8 +11,20 @@ const start = async () => {
 		throw new Error('MONGO_URI secret is required');
 	}
 
+	if (!process.env.NATS_CLIENT_ID) {
+		throw new Error('NATS_CLIENT_ID secret is required');
+	}
+
+	if (!process.env.NATS_URL) {
+		throw new Error('NATS_URL secret is required');
+	}
+
+	if (!process.env.NATS_CLUSTER_ID) {
+		throw new Error('NATS_CLUSTER_ID secret is required');
+	}
+
 	try {
-		await natsWrapper.connect('ticketing', 'dbjbjab', 'https://nats-srv:4222');
+		await natsWrapper.connect(process.env.NATS_CLUSTER_ID, process.env.NATS_CLIENT_ID, process.env.NATS_URL);
 
 		natsWrapper.client.on('close', () => {
 			console.log('NATS connection closed');
