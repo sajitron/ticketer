@@ -10,6 +10,9 @@ declare global {
 	}
 }
 
+// * jest imports the mock file rather than the file we are pointing to below
+jest.mock('../nats-wrapper.ts');
+
 let mongo: any;
 
 beforeAll(async () => {
