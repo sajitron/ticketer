@@ -1,6 +1,8 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/Ticket';
+// * jest would still give us a fake import below - test/setup.ts
+import { natsWrapper } from '../../nats-wrapper';
 
 it('has a route handler listening to /api/tickets for post requests', async () => {
 	const response = await request(app).post('/api/tickets').send({});
@@ -68,4 +70,17 @@ it('creates a tikcet with valid inputs', async () => {
 	tickets = await Ticket.find({});
 	expect(tickets.length).toEqual(1);
 	expect(tickets[0].price).toEqual(200);
+});
+
+it('publishes an event', async () => {
+	await request(app)
+		.post('/api/tickets')
+		.set('Cookie', global.signin())
+		.send({
+			title: 'Coldplay',
+			price: 200
+		})
+		.expect(201);
+
+	expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
