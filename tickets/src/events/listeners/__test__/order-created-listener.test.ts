@@ -1,10 +1,9 @@
 import { OrderCreatedEvent, OrderStatus } from '@abtickets/common';
-import mongoose, { version } from 'mongoose';
+import mongoose from 'mongoose';
 import { Ticket } from '../../../models/Ticket';
 import { OrderCreatedListener } from '../order-created-listener';
 import { natsWrapper } from '../../../nats-wrapper';
 import { Message } from 'node-nats-streaming';
-Ticket;
 
 const setup = async () => {
 	const listener = new OrderCreatedListener(natsWrapper.client);
