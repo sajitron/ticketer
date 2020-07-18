@@ -2,3 +2,4 @@ node_modules
 .next
 common
 nats-test
+skaffold
