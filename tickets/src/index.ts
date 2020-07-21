@@ -5,6 +5,7 @@ import { OrderCreatedListener } from './events/listeners/order-created-listener'
 import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
 
 const start = async () => {
+	console.log('Tickets take-off 🚀🚀');
 	if (!process.env.JWT_KEY) {
 		throw new Error('JWT_KEY secret is required');
 	}
