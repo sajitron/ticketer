@@ -3,6 +3,8 @@ import { OrderCreatedListener } from './events/listeners/order-created-listener'
 
 const start = async () => {
 
+	console.log('Expiration take-off 🚀🚀');
+
 	if (!process.env.NATS_CLIENT_ID) {
 		throw new Error('NATS_CLIENT_ID secret is required');
 	}
