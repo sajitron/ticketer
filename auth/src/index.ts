@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { app } from './app';
 
 const start = async () => {
-	console.log('Engines Off 🚀🚀');
+	console.log('Auth Engines Off!!! 🚀🚀');
 	if (!process.env.JWT_KEY) {
 		throw new Error('JWT_KEY secret is required');
 	}
